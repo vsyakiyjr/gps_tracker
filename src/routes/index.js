@@ -5,7 +5,7 @@ import Auth from './Auth';
 import Home from './Home';
 
 const Route = ({access_token}) => {
-  return <Auth />;
+  return <Home />;
 };
 
 function mapStateToProps(state) {

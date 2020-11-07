@@ -1,4 +1,4 @@
-export const URL = 'http://88.198.52.78:5000';
+export const URL = 'http://376174.msk-ovz.ru/api';
 
 export const axiosConfig = {
   headers: {
