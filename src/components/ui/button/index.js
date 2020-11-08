@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 
+// Style
 import {base} from './style';
 
 export default function Button({

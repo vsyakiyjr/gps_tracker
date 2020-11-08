@@ -1,9 +1,15 @@
-const initialState = {};
+const initialState = {
+  _id: '',
+  cars: [],
+};
 
 export default function initReducer(state = initialState, action) {
   switch (action.type) {
-    case 'reduceLogin': {
-      return action.data;
+    case 'reduceCars': {
+      return {
+        ...state,
+        cars: action.data,
+      };
     }
     case 'reduceLogout': {
       return initialState;

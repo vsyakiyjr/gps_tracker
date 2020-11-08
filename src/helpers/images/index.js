@@ -5,6 +5,7 @@ export const info = require('./direction/info.png');
 export const map = require('./direction/map.png');
 export const menu = require('./direction/menu.png');
 export const parking = require('./direction/parking.png');
+export const profile = require('./direction/profile.png');
 export const road = require('./direction/road.png');
 export const send = require('./direction/send.png');
 export const sms = require('./direction/sms.png');

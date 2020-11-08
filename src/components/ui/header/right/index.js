@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
+// Hooks
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 // Style

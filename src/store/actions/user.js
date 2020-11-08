@@ -4,3 +4,9 @@ export function fetchLogin(data) {
     data,
   };
 }
+export function fetchLogout(data) {
+  return {
+    type: 'fetchLogout',
+    data,
+  };
+}

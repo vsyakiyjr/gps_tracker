@@ -1,10 +1,12 @@
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
+// Components
 import ReduxView from './store';
 import NetworkIndicator from './components/ui/base/NetworkIndicator';
 import Route from './routes';
 
+// Moment locate
 import moment from 'moment';
 import 'moment/locale/ru';
 moment.locale('ru');

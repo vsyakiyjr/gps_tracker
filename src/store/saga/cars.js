@@ -1,32 +1,31 @@
 import {put} from 'redux-saga/effects';
 
 import {_catch} from '../../helpers';
-import * as Api from '../api/user';
+import * as Api from '../api/cars';
 
-export function* fetchLogin(action) {
+export function* fetchCars(action) {
   try {
     yield put({type: 'networkIndicator', data: true});
-    const login = yield Api.postLogin(action.data);
+    const cars = yield Api.getCars(action.data);
+
     yield put({
-      type: 'reduceLogin',
-      data: login.data.data,
+      type: 'reduceCars',
+      data: cars.data.data,
     });
   } catch (error) {
-    yield* _catch(error, 'fetchLogin');
+    yield* _catch(error, 'fetchCars');
   } finally {
     yield put({type: 'networkIndicator', data: false});
   }
 }
 
-export function* fetchLogout(action) {
+export function* fetchCarsId(action) {
   try {
     yield put({type: 'networkIndicator', data: true});
-    yield Api.postLogout(action.data);
-    yield put({
-      type: 'reduceLogout',
-    });
+    const car = yield Api.getCarsId(action.data);
+    console.log(car);
   } catch (error) {
-    yield* _catch(error, 'fetchLogout');
+    yield* _catch(error, 'fetchCarsId');
   } finally {
     yield put({type: 'networkIndicator', data: false});
   }

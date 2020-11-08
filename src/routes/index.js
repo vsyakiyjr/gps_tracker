@@ -1,11 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+// Components
 import Auth from './Auth';
 import Home from './Home';
 
 const Route = ({access_token}) => {
-  return <Home />;
+  if (access_token) {
+    return <Home />;
+  }
+  return <Auth />;
 };
 
 function mapStateToProps(state) {

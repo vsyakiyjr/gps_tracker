@@ -18,17 +18,6 @@ export const axiosConfigToken = (token) => {
   return headers;
 };
 
-export const axiosConfigOctetStream = (token, contentType) => {
-  const headers = {
-    headers: {
-      'Content-Type': contentType,
-      Accept: 'application/json',
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  return headers;
-};
-
 export const getParams = (data) => {
   let params = [];
 
