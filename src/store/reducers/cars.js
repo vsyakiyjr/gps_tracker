@@ -11,6 +11,12 @@ export default function initReducer(state = initialState, action) {
         cars: action.data,
       };
     }
+    case 'reduceCarId': {
+      return {
+        ...state,
+        _id: action.data,
+      };
+    }
     case 'reduceLogout': {
       return initialState;
     }

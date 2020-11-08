@@ -5,12 +5,14 @@ export const base = StyleSheet.create({
   flex: {
     flex: 1,
   },
-  w1: {
-    flex: 1,
-  },
+  w1: {},
   w2: {
-    // flexDirection: 'row',
+    flexDirection: 'row',
     alignItems: 'center',
+    borderBottomColor: '#E5E5E5',
+    borderBottomWidth: dw(0.5),
+    paddingHorizontal: dw(20),
+    paddingVertical: dw(10),
   },
   w3: {
     flex: 1,
@@ -19,12 +21,11 @@ export const base = StyleSheet.create({
   },
   t1: {
     fontFamily: 'Roboto',
-    fontWeight: '400',
-    fontSize: dw(12),
-    lineHeight: dw(15),
+    fontWeight: '500',
+    fontSize: dw(16),
+    lineHeight: dw(21),
     color: 'black',
-    paddingHorizontal: dw(20),
-    paddingVertical: dw(3),
+    paddingLeft: dw(16),
   },
 });
 

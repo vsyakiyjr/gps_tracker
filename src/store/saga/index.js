@@ -1,6 +1,7 @@
 import {takeLatest} from 'redux-saga/effects';
 import * as User from './user';
 import * as Cars from './cars';
+import * as Events from './events';
 
 export default function* dataSaga() {
   yield takeLatest('fetchLogin', User.fetchLogin);
@@ -8,4 +9,6 @@ export default function* dataSaga() {
 
   yield takeLatest('fetchCars', Cars.fetchCars);
   yield takeLatest('fetchCarsId', Cars.fetchCarsId);
+
+  yield takeLatest('fetchEvents', Events.fetchEvents);
 }

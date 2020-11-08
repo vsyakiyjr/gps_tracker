@@ -6,10 +6,10 @@ import Image from 'react-native-scalable-image';
 // Hooks
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
+import {dw} from '../../../../hooks';
 
 // Helpers
 import * as Images from '../../../../helpers/images';
-import {dw} from '../../../../hooks';
 
 // Actions
 import * as User from '../../../../store/actions/user';

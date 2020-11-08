@@ -6,11 +6,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import {base} from './style';
 
 const green = ['#265828', '#74DE78'];
-const orange = ['#DD7010', '#FFE261'];
+// const orange = ['#DD7010', '#FFE261'];
 
-export default function Item({_id, title, access_token, fetchCarsId}) {
+export default function Item({_id, title, reduceCarId}) {
   function onPress() {
-    fetchCarsId({access_token, _id});
+    reduceCarId(_id);
   }
 
   return (

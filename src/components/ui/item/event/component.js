@@ -1,25 +1,29 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import moment from 'moment';
+import {View, Text} from 'react-native';
+import Image from 'react-native-scalable-image';
+
+// Hooks
+import {dw} from '../../../../hooks';
+
+// Helpers
+import * as Images from '../../../../helpers/images';
 
 // Style
 import {base} from './style';
 
-const green = ['#265828', '#74DE78'];
-const orange = ['#DD7010', '#FFE261'];
-
-export default function Item({_id, title, access_token, fetchCarsId}) {
-  function onPress() {
-    fetchCarsId({access_token, _id});
-  }
-
+export default function Item({created_at}) {
   return (
-    <TouchableOpacity style={base.w1} onPress={onPress}>
-      <Text style={base.t1}>{title}</Text>
+    <View style={base.w1}>
       <View style={base.w2}>
-        <LinearGradient colors={green} style={base.w3} />
-        <Text style={base.t2}>24 км/ч</Text>
+        <Image source={Images.event} width={dw(17)} />
+        <Text style={base.t1}>
+          AC 6538 HK Выключение маячка или потеря связи
+        </Text>
       </View>
-    </TouchableOpacity>
+      <Text style={base.t2}>
+        {moment(created_at).format('DD.MM.YYYY HH:mm')}
+      </Text>
+    </View>
   );
 }

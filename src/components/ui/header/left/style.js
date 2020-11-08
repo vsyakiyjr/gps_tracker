@@ -16,9 +16,11 @@ export const base = StyleSheet.create({
   w3: {
     marginLeft: dw(20),
   },
+  w4: {
+    marginLeft: dw(16),
+  },
   t1: {
     flex: 1,
-    textAlign: 'center',
     fontFamily: 'Roboto',
     fontWeight: '700',
     fontSize: dw(16),

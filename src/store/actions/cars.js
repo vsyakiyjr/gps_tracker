@@ -10,3 +10,9 @@ export function fetchCarsId(data) {
     data,
   };
 }
+export function reduceCarId(data) {
+  return {
+    type: 'reduceCarId',
+    data,
+  };
+}

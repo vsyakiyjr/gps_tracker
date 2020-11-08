@@ -3,7 +3,7 @@ import component from './component';
 
 function mapStateToProps(state) {
   return {
-    cars: state.cars.cars,
+    events: state.events,
   };
 }
 
