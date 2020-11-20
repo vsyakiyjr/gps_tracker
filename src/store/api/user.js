@@ -3,7 +3,7 @@ import axios from 'axios';
 import {axiosConfig, axiosConfigToken, URL} from './index';
 
 export function postLogin(body) {
-  return axios.post(`${URL}/login`, body.data, axiosConfig);
+  return axios.post(`${URL}/login`, body, axiosConfig);
 }
 
 export function postLogout(body) {

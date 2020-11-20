@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import io from 'socket.io-client';
+import io from 'socket.io-client/dist/socket.io.js';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
@@ -14,6 +14,8 @@ import * as Cars from '../store/actions/cars';
 import * as Events from '../store/actions/events';
 
 const Drawer = createDrawerNavigator();
+const queryCars = {enabled: 1, withLatestData: 1, count: 15};
+const queryEvents = {count: 15};
 
 function DrawerContent() {
   return (
@@ -27,48 +29,25 @@ function DrawerContent() {
 
 function Home({access_token, fetchCars, fetchEvents}) {
   useEffect(() => {
-    fetchCars({access_token});
-    fetchEvents({access_token});
+    fetchCars({access_token, query: queryCars});
+    fetchEvents({access_token, query: queryEvents});
 
-    let socket = io('http://376174.msk-ovz.ru:6001');
-    socket = socket.connect();
+    let socket = io('http://376174.msk-ovz.ru:6001', {
+      transports: ['websocket'],
+    });
     socket.emit('token', access_token);
-    socket.emit('pong');
-    socket.on('connect', () => {
-      console.log(socket.disconnected); // false
+
+    socket.on('moving', (data) => {
+      console.log(data);
     });
-    socket.on('disconnect', (reason) => {
-      console.log(reason);
+    socket.on('event', (data) => {
+      console.log(data);
     });
-    socket.on('error', (error) => {
-      console.log(error);
+    socket.on('tripEnded', (data) => {
+      console.log(data);
     });
-    socket.on('connect_error', (error) => {
-      console.log(error);
-    });
-    socket.on('connect_timeout', (timeout) => {
-      console.log(timeout);
-    });
-    socket.on('reconnect', (attemptNumber) => {
-      console.log(attemptNumber);
-    });
-    socket.on('reconnect_attempt', (attemptNumber) => {
-      console.log(attemptNumber);
-    });
-    socket.on('reconnecting', (attemptNumber) => {
-      console.log(attemptNumber);
-    });
-    socket.on('reconnect_error', (error) => {
-      console.log(error);
-    });
-    socket.on('reconnect_failed', () => {
-      console.log('reconnect_failed');
-    });
-    socket.on('ping', () => {
-      console.log('ping');
-    });
-    socket.on('pong', (latency) => {
-      console.log(latency);
+    socket.on('newTrip', (data) => {
+      console.log(data);
     });
   });
 

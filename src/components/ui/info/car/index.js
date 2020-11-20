@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {View, Text} from 'react-native';
 import Image from 'react-native-scalable-image';
 
@@ -42,8 +41,4 @@ function Info({_id, cars}) {
   return null;
 }
 
-function mapStateToProps(state) {
-  return state.cars;
-}
-
-export default connect(mapStateToProps, null)(Info);
+export default Info;
