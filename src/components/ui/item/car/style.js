@@ -8,11 +8,13 @@ export const base = StyleSheet.create({
   w1: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: dw(20),
+    paddingLeft: dw(20),
+    paddingRight: dw(10),
     paddingVertical: dw(8),
   },
   w2: {
     alignItems: 'center',
+    width: dw(50),
   },
   w3: {
     width: dw(15),
@@ -29,6 +31,7 @@ export const base = StyleSheet.create({
     paddingRight: dw(8),
   },
   t2: {
+    textAlign: 'center',
     fontFamily: 'Roboto',
     fontWeight: '400',
     fontSize: dw(10),

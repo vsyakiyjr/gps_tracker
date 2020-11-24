@@ -1,6 +1,6 @@
 import React, {useRef} from 'react';
 import {View} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 
 // Components
 import Header from '../../../ui/header/user';
@@ -42,6 +42,19 @@ export default function User({cars}) {
           />
         );
       }
+    } else {
+      return cars.cars
+        .filter((e) => e.latest_moving)
+        .map((e) => (
+          <Marker
+            key={e.latest_moving.car_id}
+            coordinate={{
+              latitude: e.latest_moving.lat,
+              longitude: e.latest_moving.lng,
+            }}
+            title={e.latest_moving.imei}
+          />
+        ));
     }
   }
 
@@ -49,7 +62,16 @@ export default function User({cars}) {
     <View style={base.flex}>
       <Header />
       <Info {...cars} />
-      <MapView ref={refMap} style={base.flex}>
+      <MapView
+        ref={refMap}
+        // provider={PROVIDER_GOOGLE}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+        style={base.flex}>
         {renderMarker()}
       </MapView>
     </View>
