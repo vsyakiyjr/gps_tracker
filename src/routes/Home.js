@@ -8,16 +8,17 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import User from '../components/screens/home/User';
 import DrawerLeft from '../components/screens/drawer/DrawerLeft';
 import DrawerRight from '../components/screens/drawer/DrawerRight';
+import DrawerRightFilter from '../components/screens/drawer/DrawerRightFilter';
 
 // Actions
 import * as Cars from '../store/actions/cars';
 import * as Events from '../store/actions/events';
 
 const Drawer = createDrawerNavigator();
-const queryCars = {enabled: 1, withLatestData: 1, count: 15};
+const queryCars = {withLatestData: 1, count: 100};
 const queryEvents = {count: 15};
 
-function DrawerContent() {
+function DrawerFilter() {
   return (
     <Drawer.Navigator
       drawerPosition="right"
@@ -27,7 +28,24 @@ function DrawerContent() {
   );
 }
 
-function Home({access_token, fetchCars, fetchEvents}) {
+function DrawerContent() {
+  return (
+    <Drawer.Navigator
+      drawerPosition="right"
+      drawerContent={(props) => <DrawerRightFilter {...props} />}>
+      <Drawer.Screen name="Filter" component={DrawerFilter} />
+    </Drawer.Navigator>
+  );
+}
+
+function Home({
+  access_token,
+  fetchCars,
+  fetchEvents,
+  reduceMovingCar,
+  reduceEventType0,
+  reduceEventType1,
+}) {
   useEffect(() => {
     fetchCars({access_token, query: queryCars});
     fetchEvents({access_token, query: queryEvents});
@@ -38,16 +56,27 @@ function Home({access_token, fetchCars, fetchEvents}) {
     socket.emit('token', access_token);
 
     socket.on('moving', (data) => {
-      console.log(data);
+      console.log('moving', data);
+      reduceMovingCar(data);
     });
     socket.on('event', (data) => {
-      console.log(data);
+      switch (data.type) {
+        case 0: {
+          reduceEventType0(data);
+          break;
+        }
+        case 1: {
+          reduceEventType1(data);
+          break;
+        }
+      }
+      console.log('event', data);
     });
     socket.on('tripEnded', (data) => {
-      console.log(data);
+      console.log('tripEnded', data);
     });
     socket.on('newTrip', (data) => {
-      console.log(data);
+      console.log('newTrip', data);
     });
   });
 
@@ -70,6 +99,9 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchCars: (data) => dispatch(Cars.fetchCars(data)),
     fetchEvents: (data) => dispatch(Events.fetchEvents(data)),
+    reduceMovingCar: (data) => dispatch(Cars.reduceMovingCar(data)),
+    reduceEventType0: (data) => dispatch(Events.reduceEventType0(data)),
+    reduceEventType1: (data) => dispatch(Events.reduceEventType1(data)),
   };
 }
 

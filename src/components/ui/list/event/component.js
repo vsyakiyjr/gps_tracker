@@ -14,9 +14,16 @@ import * as Images from '../../../../helpers/images';
 // Style
 import {base} from './style';
 
-export default function List({events}) {
+export default function List({_id, events}) {
   const renderItem = ({item}) => <Item {...item} />;
   const renderSeparatorComponent = () => <View style={base.w3} />;
+
+  function filter() {
+    if (_id.length > 0) {
+      return events.filter((e) => e.car_id === _id);
+    }
+    return events;
+  }
 
   return (
     <View style={base.w1}>
@@ -25,7 +32,7 @@ export default function List({events}) {
         <Text style={base.t1}>Очистить</Text>
       </View>
       <FlatList
-        data={events}
+        data={filter()}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
         ItemSeparatorComponent={renderSeparatorComponent}

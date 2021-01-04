@@ -3,17 +3,17 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'MobileAvto' do
-  config = use_native_modules!
-
-  use_react_native!(:path => config["reactNativePath"])
-  
+target 'AvtoTracking' do
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
+  
+  config = use_native_modules!
 
-  target 'MobileAvtoTests' do
+  use_react_native!(:path => config["reactNativePath"])
+
+  target 'AvtoTrackingTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -28,10 +28,10 @@ target 'MobileAvto' do
   end
 end
 
-target 'MobileAvto-tvOS' do
-  # Pods for MobileAvto-tvOS
+target 'AvtoTracking-tvOS' do
+  # Pods for AvtoTracking-tvOS
 
-  target 'MobileAvto-tvOSTests' do
+  target 'AvtoTracking-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

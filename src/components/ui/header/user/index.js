@@ -17,10 +17,11 @@ import * as User from '../../../../store/actions/user';
 // Style
 import {base} from './style';
 
-function Header({access_token, fetchLogout}) {
+function Header({onPressMarker, access_token, fetchLogout}) {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
-  const parent = navigation.dangerouslyGetParent();
+  const filter = navigation.dangerouslyGetParent();
+  const left = filter.dangerouslyGetParent();
 
   function logout() {
     fetchLogout({access_token});
@@ -29,15 +30,21 @@ function Header({access_token, fetchLogout}) {
   return (
     <View style={[base.w1, {paddingTop: insets.top}]}>
       <View style={base.w2}>
-        <Image
-          source={Images.menu}
-          height={dw(20)}
-          onPress={parent.openDrawer}
-        />
+        <Image source={Images.menu} height={dw(20)} onPress={left.openDrawer} />
         <Text style={base.t1}>Карта</Text>
-        <Image source={Images.info} height={dw(20)} onPress={logout} />
-        <Image style={base.w3} source={Images.map} height={dw(20)} />
-        <Image style={base.w3} source={Images.road} height={dw(20)} />
+        <Image source={Images.exit} height={dw(20)} onPress={logout} />
+        <Image
+          style={base.w3}
+          source={Images.map}
+          height={dw(20)}
+          onPress={onPressMarker}
+        />
+        <Image
+          style={base.w3}
+          source={Images.road}
+          height={dw(20)}
+          onPress={filter.openDrawer}
+        />
         <Image
           style={base.w3}
           source={Images.sms}

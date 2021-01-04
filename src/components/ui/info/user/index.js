@@ -12,8 +12,8 @@ import * as Images from '../../../../helpers/images';
 // Style
 import {base} from './style';
 
-function Info({_id, cars}) {
-  if (_id.length > 0) {
+function Info({_id, cars, trips}) {
+  if (_id.length > 0 && trips.length === 0) {
     const car = cars.find((i) => i._id === _id);
     if (car) {
       return (
@@ -21,10 +21,7 @@ function Info({_id, cars}) {
           <Image source={Images.profile} width={dw(36)} />
           <View style={base.w2}>
             <Text style={base.t1}>{car.title}</Text>
-            <Text style={base.t2}>
-              ID {car.imei}
-              {'\n'}Баланс:{' '}
-            </Text>
+            <Text style={base.t2}>ID {car.imei}</Text>
           </View>
         </View>
       );
@@ -34,7 +31,10 @@ function Info({_id, cars}) {
 }
 
 function mapStateToProps(state) {
-  return state.cars;
+  return {
+    ...state.cars,
+    trips: state.trips,
+  };
 }
 
 export default connect(mapStateToProps, null)(Info);

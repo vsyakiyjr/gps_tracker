@@ -4,3 +4,15 @@ export function fetchEvents(data) {
     data,
   };
 }
+export function reduceEventType0(data) {
+  return {
+    type: 'reduceEventType0',
+    data,
+  };
+}
+export function reduceEventType1(data) {
+  return {
+    type: 'reduceEventType1',
+    data,
+  };
+}

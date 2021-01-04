@@ -11,8 +11,8 @@ import * as Images from '../../../../helpers/images';
 // Style
 import {base} from './style';
 
-function Info({_id, cars}) {
-  if (_id.length > 0) {
+function Info({_id, cars, trips}) {
+  if (_id.length > 0 && trips.length === 0) {
     const car = cars.find((i) => i._id === _id);
     if (car) {
       return (
@@ -22,17 +22,17 @@ function Info({_id, cars}) {
               <Image source={Images.send} width={dw(18)} />
               <Text style={base.t1}>{car.title}</Text>
             </View>
-            <Text style={base.t2}>1 мин. назад</Text>
-          </View>
-          <View style={base.w2}>
-            <View style={base.w3}>
-              <Image source={Images.connection} width={dw(18)} />
-              <Text style={base.t2}>Сигнал: 100%</Text>
-            </View>
             <View style={base.w3}>
               <Image source={Images.parking} width={dw(18)} />
               <Text style={base.t2}>стоит 4 ч. 54 мин. 30 сек.</Text>
             </View>
+          </View>
+          <View style={base.w2}>
+            <View style={base.w3}>
+              <Image source={Images.connection} width={dw(18)} />
+              <Text style={base.t2}>Сигнал: {car.signal}%</Text>
+            </View>
+            <Text style={base.t2}>{car.latest_movings[0].address}</Text>
           </View>
         </View>
       );

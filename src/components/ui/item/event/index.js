@@ -5,7 +5,7 @@ import {fetchCarsId} from '../../../../store/actions/cars';
 
 function mapStateToProps(state) {
   return {
-    access_token: state.user.access_token,
+    cars: state.cars,
   };
 }
 

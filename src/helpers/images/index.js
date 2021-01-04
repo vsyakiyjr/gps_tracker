@@ -13,3 +13,6 @@ export const road = require('./direction/road.png');
 export const search = require('./direction/search.png');
 export const send = require('./direction/send.png');
 export const sms = require('./direction/sms.png');
+export const exit = require('./direction/exit.png');
+export const arrow = require('./direction/arrow.png');
+export const calendar = require('./direction/calendar.png');

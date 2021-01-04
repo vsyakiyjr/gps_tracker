@@ -7,9 +7,7 @@ export function* fetchCars(action) {
   try {
     yield put({type: 'networkIndicator', data: true});
     const cars = yield Api.getCars(action.data);
-
-    // console.log('cars', cars);
-
+    console.log(cars);
     yield put({
       type: 'reduceCars',
       data: cars.data.data,
@@ -25,7 +23,10 @@ export function* fetchCarsId(action) {
   try {
     yield put({type: 'networkIndicator', data: true});
     const car = yield Api.getCarsId(action.data);
-    console.log(car);
+    yield put({
+      type: 'reduceCar',
+      data: car.data.data,
+    });
   } catch (error) {
     yield* _catch(error, 'fetchCarsId');
   } finally {

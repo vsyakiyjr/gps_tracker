@@ -16,3 +16,14 @@ export function reduceCarId(data) {
     data,
   };
 }
+export function reduceEmptyCarId() {
+  return {
+    type: 'reduceEmptyCarId',
+  };
+}
+export function reduceMovingCar(data) {
+  return {
+    type: 'reduceMovingCar',
+    data,
+  };
+}

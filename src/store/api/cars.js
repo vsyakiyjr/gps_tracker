@@ -11,7 +11,7 @@ export function getCars(body) {
 
 export function getCarsId(body) {
   return axios.get(
-    `${URL}/cars/${body._id}`,
+    `${URL}/cars/${body._id}${getParams(body.query)}`,
     axiosConfigToken(body.access_token),
   );
 }
