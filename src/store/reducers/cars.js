@@ -37,9 +37,11 @@ export default function initReducer(state = initialState, action) {
     case 'reduceMovingCar': {
       const index = state.cars.findIndex((e) => e._id === action.data.car_id);
       if (index >= 0) {
+        console.log(state.cars[index]);
+        console.log(action.data);
         let {latest_movings} = state.cars[index];
-        if (latest_movings > 2) {
-          latest_movings = latest_movings.slice(-1);
+        if (latest_movings.length > 2) {
+          latest_movings.splice(-1);
         }
         state.cars[index].latest_movings = [action.data, ...latest_movings];
         return {

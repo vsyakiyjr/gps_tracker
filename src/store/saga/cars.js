@@ -7,7 +7,7 @@ export function* fetchCars(action) {
   try {
     yield put({type: 'networkIndicator', data: true});
     const cars = yield Api.getCars(action.data);
-    console.log(cars);
+    // console.log(cars);
     yield put({
       type: 'reduceCars',
       data: cars.data.data,

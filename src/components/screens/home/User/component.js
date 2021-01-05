@@ -91,20 +91,27 @@ export default function User({cars, trips, reduceEmptyCarId, reduceCarId}) {
     if (cars._id) {
       const car = cars.cars.find((e) => e._id === cars._id);
       if (car && car.is_driving) {
-        return (
-          <Polyline
-            coordinates={car.latest_movings.map((j) => {
-              return {
-                latitude: j.lat,
-                longitude: j.lng,
-              };
-            })}
-            strokeColors={car.latest_movings.map(
-              (j, k) => `rgba(84, 0, 255, ${1 / (k + 1)})`,
-            )}
-            strokeWidth={4}
-          />
-        );
+        return car.latest_movings.map((j, k) => {
+          if (k !== car.latest_movings.length - 1) {
+            return (
+              <Polyline
+                key={'direction' + j._id}
+                coordinates={[
+                  {
+                    latitude: j.lat,
+                    longitude: j.lng,
+                  },
+                  {
+                    latitude: car.latest_movings[k + 1].lat,
+                    longitude: car.latest_movings[k + 1].lng,
+                  },
+                ]}
+                strokeColor={`rgba(84, 0, 255, ${1 / (k + 1)})`}
+                strokeWidth={4}
+              />
+            );
+          }
+        });
       }
     } else {
       return cars.cars
