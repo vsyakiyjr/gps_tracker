@@ -13,6 +13,8 @@ export default function initReducer(state = initialState, action) {
     }
     case 'reduceEventType0':
     case 'reduceEventType1': {
+      const car = action.data;
+      delete car.type;
       const index = state.cars.findIndex((e) => e._id === action.data.car_id);
       if (index >= 0) {
         state.cars[index] = {...state.cars[index], ...action.data};
@@ -37,13 +39,12 @@ export default function initReducer(state = initialState, action) {
     case 'reduceMovingCar': {
       const index = state.cars.findIndex((e) => e._id === action.data.car_id);
       if (index >= 0) {
-        console.log(state.cars[index]);
-        console.log(action.data);
         let {latest_movings} = state.cars[index];
         if (latest_movings.length > 2) {
           latest_movings.splice(-1);
         }
         state.cars[index].latest_movings = [action.data, ...latest_movings];
+        state.cars[index].is_driving = true;
         return {
           ...state,
           cars: [...state.cars],

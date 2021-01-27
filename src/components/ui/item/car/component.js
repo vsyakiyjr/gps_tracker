@@ -14,6 +14,7 @@ export default function Item(props) {
 
   function onPress() {
     reduceCarId(_id);
+    global.leftNavigation.closeDrawer();
   }
 
   if (signal === 0) {

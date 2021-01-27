@@ -16,3 +16,4 @@ export const sms = require('./direction/sms.png');
 export const exit = require('./direction/exit.png');
 export const arrow = require('./direction/arrow.png');
 export const calendar = require('./direction/calendar.png');
+export const locationMe = require('./direction/location_me.png');

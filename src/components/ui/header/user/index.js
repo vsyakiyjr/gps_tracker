@@ -23,6 +23,8 @@ function Header({onPressMarker, access_token, fetchLogout}) {
   const filter = navigation.dangerouslyGetParent();
   const left = filter.dangerouslyGetParent();
 
+  global.leftNavigation = left;
+
   function logout() {
     fetchLogout({access_token});
   }
@@ -32,12 +34,11 @@ function Header({onPressMarker, access_token, fetchLogout}) {
       <View style={base.w2}>
         <Image source={Images.menu} height={dw(20)} onPress={left.openDrawer} />
         <Text style={base.t1}>Карта</Text>
-        <Image source={Images.exit} height={dw(20)} onPress={logout} />
+
         <Image
-          style={base.w3}
-          source={Images.map}
+          source={Images.sms}
           height={dw(20)}
-          onPress={onPressMarker}
+          onPress={navigation.openDrawer}
         />
         <Image
           style={base.w3}
@@ -47,9 +48,15 @@ function Header({onPressMarker, access_token, fetchLogout}) {
         />
         <Image
           style={base.w3}
-          source={Images.sms}
+          source={Images.map}
           height={dw(20)}
-          onPress={navigation.openDrawer}
+          onPress={onPressMarker}
+        />
+        <Image
+          style={base.w3}
+          source={Images.exit}
+          height={dw(20)}
+          onPress={logout}
         />
       </View>
     </View>

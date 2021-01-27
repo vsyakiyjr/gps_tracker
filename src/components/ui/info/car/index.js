@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import Image from 'react-native-scalable-image';
+import moment from 'moment';
 
 // Hooks
 import {dw} from '../../../../hooks';
@@ -12,9 +13,19 @@ import * as Images from '../../../../helpers/images';
 import {base} from './style';
 
 function Info({_id, cars, trips}) {
+  function getParking(car) {
+    if (car.is_driving) {
+      return 'В поездке';
+    } else {
+      const parking = moment(car.latest_movings[0].created_at).fromNow(true);
+      return `Стоит ${parking}`;
+    }
+  }
+
   if (_id.length > 0 && trips.length === 0) {
     const car = cars.find((i) => i._id === _id);
     if (car) {
+      console.log(car);
       return (
         <View style={base.w1}>
           <View style={[base.w2, base.w4]}>
@@ -24,7 +35,7 @@ function Info({_id, cars, trips}) {
             </View>
             <View style={base.w3}>
               <Image source={Images.parking} width={dw(18)} />
-              <Text style={base.t2}>стоит 4 ч. 54 мин. 30 сек.</Text>
+              <Text style={base.t2}>{getParking(car)}</Text>
             </View>
           </View>
           <View style={base.w2}>

@@ -39,13 +39,13 @@ export default function Login({fetchLogin}) {
           ref={refEmail}
           style={base.w3}
           placeholder="Email"
-          value="admin@gmail.com"
+          // value="admin@gmail.com"
         />
         <Input
           ref={refPassword}
           style={base.w3}
           placeholder="Пароль"
-          value="password"
+          // value="password"
           secureTextEntry
         />
         <Button title="Войти" color="#426c85" onPress={done} />

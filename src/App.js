@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {StatusBar, Platform} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 // Components
@@ -12,6 +13,12 @@ import 'moment/locale/ru';
 moment.locale('ru');
 
 export default function App() {
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      StatusBar.setBackgroundColor('black');
+    }
+  }, []);
+
   return (
     <SafeAreaProvider>
       <ReduxView>

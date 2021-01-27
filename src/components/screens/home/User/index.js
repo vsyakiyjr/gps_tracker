@@ -1,7 +1,7 @@
 import component from './component';
 import {connect} from 'react-redux';
 
-import {reduceEmptyCarId, reduceCarId} from '../../../../store/actions/cars';
+import {reduceEmptyCarId} from '../../../../store/actions/cars';
 
 function mapStateToProps(state) {
   return {
@@ -13,7 +13,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     reduceEmptyCarId: () => dispatch(reduceEmptyCarId()),
-    reduceCarId: (data) => dispatch(reduceCarId(data)),
   };
 }
 
